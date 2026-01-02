@@ -1,0 +1,35 @@
+bundle:
+  name: ecommerce-lakehouse
+
+targets:
+  dev:
+    mode: development
+    workspace:
+      host: https://adb-7405608240387194.14.azuredatabricks.net  # Your workspace URL
+      artifact_path: /Users/${workspace.current_user.userName}/.bundle/${bundle.name}/dev
+
+resources:
+  jobs:
+    ecommerce_lakehouse_pipeline:
+      name: Ecommerce Lakehouse Pipeline
+      tasks:
+        - task_key: raw_to_bronze
+          notebook_task:
+            notebook_path: /Repos/amar212b@gmail.com/azure-project2-ecommerce-lakehouse/01_raw_to_bronze.ipynb  # Update exact notebook name if different
+            base_parameters: {}
+        
+        - task_key: bronze_to_silver
+          notebook_task:
+            notebook_path: /Repos/amar212b@gmail.com/azure-project2-ecommerce-lakehouse/02_bronze_to_silver.ipynb
+          depends_on:
+            - task_key: raw_to_bronze
+        
+        - task_key: silver_to_gold
+          notebook_task:
+            notebook_path: /Repos/amar212b@gmail.com/azure-project2-ecommerce-lakehouse/03_silver_to_gold.ipynb
+          depends_on:
+            - task_key: bronze_to_silver
+
+      # Optional: Use serverless or an existing cluster
+      # Remove or comment out if you want to use job cluster (default)
+      # existing_cluster_id: your-cluster-id
