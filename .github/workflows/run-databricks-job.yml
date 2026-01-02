@@ -20,4 +20,4 @@ jobs:
         run: curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
       - name: Run Databricks Job
-        run: databricks jobs run-now --job-id ${{ secrets.DATABRICKS_JOB_ID }}
+        run: databricks jobs run-now ${{ secrets.DATABRICKS_JOB_ID }}
