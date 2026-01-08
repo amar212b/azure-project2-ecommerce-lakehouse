@@ -27,8 +27,13 @@ Raw → Bronze → Silver → Gold layers using Delta Lake.
 - GitHub Actions
 
 ## CI/CD
-Pipelines are triggered via GitHub Actions,
-which run Databricks Jobs using parameterized notebooks.
+This project uses **GitHub Actions** for automated CI/CD.
+
+- On every push to `main` (or manual trigger), GitHub Actions:
+  - Deploys the Databricks job definition using **Databricks Asset Bundles** (Infrastructure as Code).
+  - Runs the full lakehouse pipeline (bronze → silver → gold layers).
+- Notebooks are versioned in Git and synced to Databricks Repos.
+- The pipeline builds Delta Lake tables in the external ADLS Gen2 container.
 
 ## Author
 Amardeep Singh
