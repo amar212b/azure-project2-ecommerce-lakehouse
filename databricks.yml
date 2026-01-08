@@ -15,18 +15,18 @@ resources:
       tasks:
         - task_key: raw_to_bronze
           notebook_task:
-            notebook_path: /Repos/amar212b@gmail.com/azure-project2-ecommerce-lakehouse/01_raw_to_bronze.ipynb  # Update exact notebook name if different
+            notebook_path: ./src/notebooks/01_raw_to_bronze.ipynb  # Update exact notebook name if different
             base_parameters: {}
         
         - task_key: bronze_to_silver
           notebook_task:
-            notebook_path: /Repos/amar212b@gmail.com/azure-project2-ecommerce-lakehouse/02_bronze_to_silver.ipynb
+            notebook_path: ./src/notebooks/02_bronze_to_silver.ipynb
           depends_on:
             - task_key: raw_to_bronze
         
         - task_key: silver_to_gold
           notebook_task:
-            notebook_path: /Repos/amar212b@gmail.com/azure-project2-ecommerce-lakehouse/03_silver_to_gold.ipynb
+            notebook_path: ./src/notebooks/03_silver_to_gold.ipynb
           depends_on:
             - task_key: bronze_to_silver
 
