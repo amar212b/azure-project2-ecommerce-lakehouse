@@ -1,3 +1,5 @@
+[![Deploy and Run Ecommerce Lakehouse Pipeline (Bundles)](https://github.com/amar212b/azure-project2-ecommerce-lakehouse/actions/workflows/databricks.yml/badge.svg?branch=main)](https://github.com/amar212b/azure-project2-ecommerce-lakehouse/actions/workflows/databricks.yml)
+[![Run Ecommerce Lakehouse Pipeline](https://github.com/amar212b/azure-project2-ecommerce-lakehouse/actions/workflows/run-databricks-job.yml/badge.svg?branch=main)](https://github.com/amar212b/azure-project2-ecommerce-lakehouse/actions/workflows/run-databricks-job.yml)
 # Project 2: Ecommerce Lakehouse on Azure Databricks
 
 ## Overview
