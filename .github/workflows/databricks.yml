@@ -1,0 +1,31 @@
+name: Deploy and Run Ecommerce Lakehouse Pipeline (Bundles)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-and-run:
+    runs-on: ubuntu-latest
+
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        run: curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+      - name: Validate Bundle
+        run: databricks bundle validate
+
+      - name: Deploy Bundle (creates/updates job from code)
+        run: databricks bundle deploy -t dev
+
+      - name: Run Bundle Job
+        run: databricks bundle run -t dev ecommerce_lakehouse_pipeline
